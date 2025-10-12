@@ -9,9 +9,8 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class Payment {

@@ -8,10 +8,8 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
-
+@AllArgsConstructor
 
 public class UsersRegistrationRequest {
 private String name;

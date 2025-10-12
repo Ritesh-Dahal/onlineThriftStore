@@ -3,9 +3,9 @@ package com.example.online.thrift.store.dto.response;
 
 import lombok.*;
 
-@AllArgsConstructor
+
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class ProductResponse {

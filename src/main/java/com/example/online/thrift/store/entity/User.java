@@ -10,9 +10,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@RequiredArgsConstructor
 @AllArgsConstructor
-
+@Table(name = "users")
 public class User {
 
     @Id

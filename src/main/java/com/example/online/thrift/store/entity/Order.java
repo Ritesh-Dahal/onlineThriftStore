@@ -1,15 +1,18 @@
 package com.example.online.thrift.store.entity;
 
 import com.example.online.thrift.store.enums.Status;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Table(name = "orders")
 public class Order {
 
     @Id

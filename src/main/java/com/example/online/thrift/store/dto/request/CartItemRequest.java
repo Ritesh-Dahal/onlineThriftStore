@@ -3,9 +3,8 @@ package com.example.online.thrift.store.dto.request;
 
 import lombok.*;
 
-@AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class CartItemRequest {
