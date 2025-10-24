@@ -20,7 +20,7 @@ public class UserService {
     private UserRepository userRepository;
 
 
-    public UserResponse userCreation (UsersRegistrationRequest userRequest){
+    public void userCreation (UsersRegistrationRequest userRequest){
 
         userRepository.findByEmail(userRequest.getEmail())
                 .ifPresent(User -> new AlreadyExistException("User with the email "+userRequest.getEmail()+ " already exist"));
@@ -28,9 +28,6 @@ public class UserService {
     User user = new User(userRequest);
 
         userRepository.save(user);
-        UserResponse userResponse = new UserResponse(user);
-
-        return userResponse;
     }
 
 
@@ -52,7 +49,7 @@ public class UserService {
     public List<UserResponse>  getAllUsers(){
 
         List<User> userList = userRepository.findAll();
-        List<UserResponse> userResponsesList = new ArrayList<>(userList.stream().map(UserResponse::new).toList());
+        List<UserResponse> userResponsesList = userList.stream().map(UserResponse::new).toList();
 
         return userResponsesList;
     }
