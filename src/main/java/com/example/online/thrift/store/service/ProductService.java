@@ -6,6 +6,7 @@ import com.example.online.thrift.store.entity.Product;
 import com.example.online.thrift.store.exception.NotFoundException;
 import com.example.online.thrift.store.repository.ProductRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

@@ -1,6 +1,6 @@
 package com.example.online.thrift.store.dto.response;
 
-import com.example.online.thrift.store.entity.User;
+import com.example.online.thrift.store.entity.Users;
 import com.example.online.thrift.store.enums.Role;
 import lombok.*;
 
@@ -16,15 +16,15 @@ import java.time.LocalDateTime;
 
 public class UserResponse {
 
-    public UserResponse(User user){
-        this.id= user.getId();
-        this.name= user.getName();
-        this.email = user.getEmail();
-        this.dateOfBirth = user.getDateOfBirth();
-        this.address= user.getAddress();
-        this.phone = user.getPhone();
-        this.gender = user.getGender();
-        this.role = user.getRole();
+    public UserResponse(Users users){
+        this.id= users.getId();
+        this.name= users.getName();
+        this.email = users.getEmail();
+        this.dateOfBirth = users.getDateOfBirth();
+        this.address= users.getAddress();
+        this.phone = users.getPhone();
+        this.gender = users.getGender();
+        this.role = users.getRole();
 
 
     }

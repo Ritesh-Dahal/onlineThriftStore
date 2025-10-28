@@ -2,32 +2,32 @@ package com.example.online.thrift.store.service;
 
 import com.example.online.thrift.store.dto.request.UsersRegistrationRequest;
 import com.example.online.thrift.store.dto.response.UserResponse;
-import com.example.online.thrift.store.entity.User;
+import com.example.online.thrift.store.entity.Users;
 import com.example.online.thrift.store.exception.AlreadyExistException;
 import com.example.online.thrift.store.exception.NotFoundException;
 import com.example.online.thrift.store.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class UserService {
 
     private UserRepository userRepository;
-
+    private PasswordEncoder passwordEncoder;
 
     public void userCreation (UsersRegistrationRequest userRequest){
 
         userRepository.findByEmail(userRequest.getEmail())
-                .ifPresent(User -> new AlreadyExistException("User with the email "+userRequest.getEmail()+ " already exist"));
+                .ifPresent(user -> {throw new AlreadyExistException("User with the email " + userRequest.getEmail()+ " already exist");});
 
-    User user = new User(userRequest);
-
-        userRepository.save(user);
+    Users users = new Users(userRequest);
+        users.setPassword(passwordEncoder.encode(users.getPassword()));
+        userRepository.save(users);
     }
 
 
@@ -39,17 +39,17 @@ public class UserService {
 
 
     public UserResponse getUserById(Long id){
-        User user =userRepository.findById(id).orElseThrow(()-> new NotFoundException("User with id "+id +" not found" ));
+        Users users =userRepository.findById(id).orElseThrow(()-> new NotFoundException("User with id "+id +" not found" ));
 
-        UserResponse userResponse= new UserResponse(user);
+        UserResponse userResponse= new UserResponse(users);
         return userResponse;
     }
 
 
     public List<UserResponse>  getAllUsers(){
 
-        List<User> userList = userRepository.findAll();
-        List<UserResponse> userResponsesList = userList.stream().map(UserResponse::new).toList();
+        List<Users> usersList = userRepository.findAll();
+        List<UserResponse> userResponsesList = usersList.stream().map(UserResponse::new).toList();
 
         return userResponsesList;
     }

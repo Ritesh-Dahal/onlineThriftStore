@@ -6,6 +6,7 @@ import com.example.online.thrift.store.entity.OrderItem;
 import com.example.online.thrift.store.exception.NotFoundException;
 import com.example.online.thrift.store.repository.OrderItemRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,9 +23,9 @@ public class OrderItemService {
 
     }
 
-    public OrderItemResponse getOrderByUserName(Long id ){
+    public OrderItemResponse getOrderByUserId(Long id ){
 
-        OrderItem orderItem = orderItemRepository.findByUserName(id)
+        OrderItem orderItem = orderItemRepository.findByUserId(id)
                 .orElseThrow(()-> new NotFoundException("User With Provided Id Not Found"));
         return new OrderItemResponse(orderItem);
 

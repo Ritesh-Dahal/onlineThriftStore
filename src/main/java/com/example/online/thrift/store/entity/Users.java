@@ -14,9 +14,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 
 @Table(name = "users")
-public class User {
+public class Users {
 
-    public User(UsersRegistrationRequest registrationRequest){
+    public Users(UsersRegistrationRequest registrationRequest){
         this.name = registrationRequest.getName();
         this.password= registrationRequest.getPassword();
         this.address= registrationRequest.getAddress();

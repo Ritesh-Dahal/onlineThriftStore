@@ -7,6 +7,7 @@ import com.example.online.thrift.store.exception.AlreadyExistException;
 import com.example.online.thrift.store.exception.NotFoundException;
 import com.example.online.thrift.store.repository.CategoryRepository;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
