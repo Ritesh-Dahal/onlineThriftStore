@@ -2,6 +2,8 @@ package com.example.online.thrift.store.dto.request;
 
 import lombok.*;
 
+import java.util.List;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -9,5 +11,4 @@ import lombok.*;
 @Setter
 public class CategoryRequest {
     private String name;
-    private String description;
 }

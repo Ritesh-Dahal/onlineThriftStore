@@ -4,6 +4,7 @@ import com.example.online.thrift.store.dto.request.ProductRequest;
 import com.example.online.thrift.store.dto.response.ProductResponse;
 import com.example.online.thrift.store.service.ProductService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/api")
 public class ProductController {
 
     private ProductService productService;

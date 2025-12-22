@@ -13,12 +13,10 @@ public class CategoryResponse {
     public CategoryResponse(Category category){
         this.id = category.getId();
         this.name = category.getName();
-        this.description = category.getDescription();
+
     }
 
     private Long id;
-
     private String name;
-    private String description;
 
 }

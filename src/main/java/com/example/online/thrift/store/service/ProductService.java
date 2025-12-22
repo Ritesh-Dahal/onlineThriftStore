@@ -38,6 +38,7 @@ public class ProductService {
 
 
         //Save the file to the uploads folder i.e imagedatabase
+
         Files.copy(imageFile.getInputStream(), filePath);
 
         Product product = new Product(productRequest);

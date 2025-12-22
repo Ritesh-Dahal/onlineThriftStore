@@ -8,6 +8,7 @@ import com.example.online.thrift.store.exception.NotFoundException;
 import com.example.online.thrift.store.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

@@ -29,7 +29,7 @@ public class SecurityConfig {
 
         return http.
                 authorizeHttpRequests(auth->
-                        auth.requestMatchers("/register","/login").permitAll()
+                        auth.requestMatchers("api/auth/register","api/auth/login").permitAll()
 //                                .requestMatchers("user/**").permitAll()
                          .anyRequest().authenticated())
                             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)

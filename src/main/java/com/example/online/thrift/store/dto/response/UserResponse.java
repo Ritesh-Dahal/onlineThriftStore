@@ -5,6 +5,7 @@ import com.example.online.thrift.store.enums.Role;
 import lombok.*;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -33,7 +34,7 @@ public class UserResponse {
     private Long id;
     private String name;
     private String email;
-    private LocalDateTime dateOfBirth;
+    private LocalDate dateOfBirth;
     private String address;
     private String phone;
     private String gender;

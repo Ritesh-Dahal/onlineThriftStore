@@ -17,10 +17,10 @@ public class UsersRegistrationRequest {
 private String name;
 private String email;
 private String password;
-private LocalDateTime dateOfBirth;
+private String dateOfBirth;
 private String address;
 private String phone;
 private String gender;
-private Role role;
+private String role;
 
 }

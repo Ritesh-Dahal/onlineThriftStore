@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/api")
 public class CategoryController {
     private CategoryService categoryService;
 
@@ -22,7 +23,7 @@ public class CategoryController {
 
     }
 
-    @GetMapping("/categories")
+        @GetMapping("/categories")
     public ResponseEntity<?> getAllCategory(){
 
         List<CategoryResponse> categoryResponse = categoryService.getCategory();

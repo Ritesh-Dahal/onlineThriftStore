@@ -5,6 +5,7 @@ import com.example.online.thrift.store.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -21,9 +22,9 @@ public class Users {
         this.password= registrationRequest.getPassword();
         this.address= registrationRequest.getAddress();
         this.email= registrationRequest.getEmail();
-        this.dateOfBirth= registrationRequest.getDateOfBirth();
+        this.dateOfBirth= LocalDate.parse(registrationRequest.getDateOfBirth());
         this.phone = registrationRequest.getPhone();
-        this.role = registrationRequest.getRole();
+        this.role = role.valueOf(registrationRequest.getRole());
         this.gender = registrationRequest.getGender();
 
     }
@@ -36,7 +37,7 @@ public class Users {
     @Column(unique = true)
     private String email;
 
-    private LocalDateTime dateOfBirth;
+    private LocalDate dateOfBirth;
     private String address;
 
     @Column(unique = true,length = 10)
@@ -45,5 +46,7 @@ public class Users {
     private String gender;
 
     private String password;
+
+    @Enumerated(EnumType.STRING)
     private Role role;
 }

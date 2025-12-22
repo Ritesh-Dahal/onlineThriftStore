@@ -17,7 +17,7 @@ public class Category {
 
     public Category (CategoryRequest categoryRequest){
         this.name = categoryRequest.getName();
-        this.description = categoryRequest.getDescription();
+
     }
 
 
@@ -27,6 +27,6 @@ public class Category {
     private Long id;
 
     private String name;
-    private String description;
+
 
 }
