@@ -4,16 +4,18 @@ import com.example.online.thrift.store.dto.request.CategoryRequest;
 import com.example.online.thrift.store.dto.response.CategoryResponse;
 import com.example.online.thrift.store.service.CategoryService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RequestMapping("/api")
 public class CategoryController {
-    private CategoryService categoryService;
+
+    private final CategoryService categoryService;
 
     @PostMapping("/category")
 

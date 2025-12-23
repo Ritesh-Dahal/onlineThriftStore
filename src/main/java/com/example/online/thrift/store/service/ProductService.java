@@ -5,8 +5,10 @@ import com.example.online.thrift.store.dto.response.ProductResponse;
 import com.example.online.thrift.store.entity.Product;
 import com.example.online.thrift.store.exception.NotFoundException;
 import com.example.online.thrift.store.repository.ProductRepository;
+import com.example.online.thrift.store.util.ImageKitUtil;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,33 +19,16 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ProductService {
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
+    private final ImageKitUtil imageKitUtil;
 
     public void saveProduct(ProductRequest productRequest, MultipartFile imageFile)throws Exception{
 
-        // this is the path where the image is stored
-
-        String uploadDir = "C:\\Users\\user\\Desktop\\ThriftStoreImageDatabase";
-        Path uploadPath = Paths.get(uploadDir);
-        if (!Files.exists(uploadPath)) {
-            Files.createDirectories(uploadPath);
-        }
-
-        // Generate a random unique file name to avoid overwriting
-
-        String fileName = UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
-        Path filePath = uploadPath.resolve(fileName);
-
-
-        //Save the file to the uploads folder i.e imagedatabase
-
-        Files.copy(imageFile.getInputStream(), filePath);
-
+       String filePath = uploadLogo(imageFile);
         Product product = new Product(productRequest);
         product.setImagePath(filePath.toString());
-
         productRepository.save(product);
 
     }
@@ -72,6 +57,13 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
+
+    private String uploadLogo(MultipartFile imageFile) throws Exception {
+            String folder = "/thriftstore/";
+            String fileName = UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
+            String logoUrl = imageKitUtil.uploadImage(imageFile, folder, fileName);
+            return logoUrl;
+        }
 
 
 }

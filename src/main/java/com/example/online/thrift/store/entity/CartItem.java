@@ -18,6 +18,7 @@ public class CartItem {
         this.quantity = cartItemRequest.getQuantity();
         this.cartId=cartItemRequest.getCartId();
         this.productId=cartItemRequest.getProductId();
+        this.userId = cartItemRequest.getUserId();
     }
 
 

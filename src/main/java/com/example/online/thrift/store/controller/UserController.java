@@ -7,6 +7,7 @@ import com.example.online.thrift.store.entity.Users;
 import com.example.online.thrift.store.service.UserService;
 import com.example.online.thrift.store.util.JwtUtil;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,14 +17,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")
 public class UserController {
 
-    private UserService userService;
-    private AuthenticationManager authenticationManager;
-    private JwtUtil jwtUtil;
+    private final UserService userService;
+    private final AuthenticationManager authenticationManager;
+    private final JwtUtil jwtUtil;
 
     @PostMapping("/auth/register")
 

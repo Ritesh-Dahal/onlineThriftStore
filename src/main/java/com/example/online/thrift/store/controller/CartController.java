@@ -4,16 +4,17 @@ import com.example.online.thrift.store.dto.request.CartRequest;
 import com.example.online.thrift.store.dto.response.CartResponse;
 import com.example.online.thrift.store.service.CartService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RequestMapping("/api")
 public class CartController {
 
-    private CartService cartService;
+    private final CartService cartService;
 
     @PostMapping("/cart")
     public ResponseEntity<?> createCart(@RequestBody CartRequest cartRequest){
@@ -33,7 +34,6 @@ public class CartController {
     }
 
     @DeleteMapping("/cart")
-
     public ResponseEntity<?> deleteCartByUserId(Long id){
 
         cartService.deleteCartByUserId(id);
