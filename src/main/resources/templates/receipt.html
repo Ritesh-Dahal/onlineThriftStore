@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Payment Receipt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .receipt {
+            width: 420px;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .receipt-header {
+            background-color: #ff9800;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .receipt-header h1 {
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        .receipt-body {
+            padding: 20px;
+        }
+
+        .info {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .info p {
+            margin: 4px 0;
+        }
+
+        .info strong {
+            color: #555;
+        }
+
+        /* Divider */
+        .divider {
+            border-top: 1px dashed #ccc;
+            margin: 15px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th {
+            text-align: left;
+            color: #ff9800;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #ff9800;
+        }
+
+        td {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        td:last-child {
+            text-align: right;
+        }
+
+        /* Total */
+        .total {
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            color: #333;
+        }
+
+        .total span {
+            color: #ff9800;
+        }
+
+        /* Footer */
+        .receipt-footer {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            padding: 15px;
+            border-top: 1px dashed #ccc;
+        }
+
+        .status {
+            font-weight: bold;
+            color: #ff9800;
+        }
+    </style>
+</head>
+<body>
+
+<div class="receipt">
+
+    <!-- Header -->
+    <div class="receipt-header">
+        <h1 th:text="${storeName}">Neprift</h1>
+        <p>Payment Receipt</p>
+    </div>
+
+    <!-- Body -->
+    <div class="receipt-body">
+
+        <div class="info">
+            <p><strong>Status:</strong> <span class="status" th:text="${payment.status}">PAID</span></p>
+            <p><strong>Method:</strong> <span th:text="${payment.paymentMethod}">Online</span></p>
+            <p><strong>Date:</strong> <span th:text="${payment.paymentDate}">2026-02-25</span></p>
+        </div>
+
+        <div class="divider"></div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Item</th>
+                <th style="text-align:right;">Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.name}">Product Name</td>
+                <td th:text="${product.price}">500</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="total">
+            <div>Total</div>
+            <div>Rs. <span th:text="${totalPrice}">1500</span></div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="receipt-footer">
+        Thank you for your purchase! <br>
+        Please keep this receipt for your records.
+    </div>
+
+</div>
+
+</body>
+</html>

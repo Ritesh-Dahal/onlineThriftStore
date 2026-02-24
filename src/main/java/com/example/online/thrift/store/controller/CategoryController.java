@@ -16,14 +16,14 @@ import java.util.List;
 public class CategoryController {
 
     private final CategoryService categoryService;
-
-    @PostMapping("/category")
-
-    public ResponseEntity<?> addCategory(@RequestBody CategoryRequest categoryRequest){
-        categoryService.addCategory(categoryRequest);
-        return BaseController.successResponse("Category Added Successfully","{ }");
-
-    }
+//
+//    @PostMapping("/category")
+//
+//    public ResponseEntity<?> addCategory(@RequestBody CategoryRequest categoryRequest){
+//        categoryService.addCategory(categoryRequest);
+//        return BaseController.successResponse("Category Added Successfully","{ }");
+//
+//    }
 
         @GetMapping("/categories")
     public ResponseEntity<?> getAllCategory(){

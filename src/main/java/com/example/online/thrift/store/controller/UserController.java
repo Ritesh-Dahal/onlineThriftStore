@@ -1,6 +1,8 @@
 package com.example.online.thrift.store.controller;
 
 import com.example.online.thrift.store.dto.request.LoginDto;
+import com.example.online.thrift.store.dto.request.UpdatePassword;
+import com.example.online.thrift.store.dto.request.UserUpdateRequest;
 import com.example.online.thrift.store.dto.request.UsersRegistrationRequest;
 import com.example.online.thrift.store.dto.response.UserResponse;
 import com.example.online.thrift.store.entity.Users;
@@ -8,6 +10,7 @@ import com.example.online.thrift.store.service.UserService;
 import com.example.online.thrift.store.util.JwtUtil;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -34,6 +37,8 @@ public class UserController {
 
         return BaseController.successResponse("User Created Successfully", "{ }");
 
+        //return new ResponseEntity<>("User created successfully", HttpStatus.OK);
+
     }
 
     @PostMapping("/auth/login")
@@ -58,6 +63,21 @@ public class UserController {
         return BaseController.successResponse("User found with the id: " + id, userResponse);
 
     }
+
+    @PutMapping("/user/{id}")
+    public ResponseEntity<?> updateUserById(@PathVariable Long id, @RequestBody UserUpdateRequest userUpdateRequest) {
+        userService.updateById(id,userUpdateRequest);
+        return BaseController.successResponse("user  updated successfully" + id, "{ }");
+
+    }
+
+    @PutMapping("/user/update-password/{id}")
+    public ResponseEntity<?> updatePassword(@PathVariable Long id, @RequestBody UpdatePassword updatePassword){
+        userService.updatePassword(id,updatePassword);
+        return BaseController.successResponse("password updated successfully", "{}");
+    }
+
+
 
     @GetMapping("/admin/users")
     public ResponseEntity<?> getAllUsers() {

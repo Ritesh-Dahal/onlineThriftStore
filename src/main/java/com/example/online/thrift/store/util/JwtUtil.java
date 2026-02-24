@@ -28,12 +28,14 @@ public class JwtUtil {
 
         Users user = userRepository.findByEmail(email).get();
 
-        Map<String,String> role = new HashMap<>();
-        role.put("role",user.getRole().toString());
+        Map<String,String> userDetails = new HashMap<>();
+        userDetails.put("role",user.getRole().toString());
+        userDetails.put("userId",user.getId().toString());
+        userDetails.put("name",user.getName());
 
 
         return Jwts.builder()
-                .claims(role)
+                .claims(userDetails)
                 .subject(email)
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + expirationTime))

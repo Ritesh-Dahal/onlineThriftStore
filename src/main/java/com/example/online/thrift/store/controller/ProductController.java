@@ -29,7 +29,7 @@ public class ProductController {
         return BaseController.successResponse("Product Saved Successfully","{ }");
     }
 
-    @GetMapping("/products")
+    @GetMapping("/auth/products")
 
     public ResponseEntity<?> getAllProduct(){
 
@@ -38,12 +38,19 @@ public class ProductController {
         return BaseController.successResponse("All Product Details:",productList);
     }
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/auth/product/{id}")
 
     public ResponseEntity<?> getProductById(@PathVariable Long id){
 
         ProductResponse productResponse = productService.getSingleProduct(id);
         return BaseController.successResponse("Product with id "+id+" found Successfully",productResponse);
+    }
+
+    @PutMapping("/update-product/{id}")
+    public ResponseEntity<?> updateProductById(@PathVariable Long id,@RequestBody ProductRequest productRequest){
+
+        productService.updateProduct(id,productRequest);
+        return BaseController.successResponse("Product updated Successfully","{}");
     }
 
 

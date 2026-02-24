@@ -57,6 +57,20 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
+    public void updateProduct(Long id ,ProductRequest productRequest){
+
+      Product product = productRepository.findById(id).get();
+
+        product.setQuantity(productRequest.getQuantity());
+        product.setName(productRequest.getName());
+        product.setPrice(productRequest.getPrice());
+        product.setDescription(productRequest.getDescription());
+
+        productRepository.save(product);
+
+
+    }
+
 
     private String uploadLogo(MultipartFile imageFile) throws Exception {
             String folder = "/thriftstore/";
@@ -64,6 +78,8 @@ public class ProductService {
             String logoUrl = imageKitUtil.uploadImage(imageFile, folder, fileName);
             return logoUrl;
         }
+
+
 
 
 }

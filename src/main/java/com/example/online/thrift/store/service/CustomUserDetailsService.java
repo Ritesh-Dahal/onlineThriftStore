@@ -4,7 +4,6 @@ import com.example.online.thrift.store.entity.Users;
 import com.example.online.thrift.store.exception.NotFoundException;
 import com.example.online.thrift.store.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

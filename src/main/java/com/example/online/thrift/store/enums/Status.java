@@ -5,6 +5,5 @@ public enum Status {
     PENDING,
     FAILED,
     SHIPPED,
-    DELIVERED,
-    CANCELED;
+    DELIVERED;
 }

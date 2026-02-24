@@ -26,6 +26,7 @@ public class ImageKitUtil {
 
     @PostConstruct
     public void init() {
+
         ImageKit imageKit = ImageKit.getInstance();
         Configuration config = new Configuration();
         config.setPublicKey(publicKey);

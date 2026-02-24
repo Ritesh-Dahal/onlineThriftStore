@@ -18,12 +18,12 @@ public class CartController {
 
     @PostMapping("/cart")
     public ResponseEntity<?> createCart(@RequestBody CartRequest cartRequest){
-        cartService.createCart(cartRequest);
-        return BaseController.successResponse("Cart Created Successfully", HttpStatus.OK);
+
+        return BaseController.successResponse("Cart Created Successfully", cartService.createCart(cartRequest));
 
     }
 
-    @GetMapping("/cart")
+    @GetMapping("/cart/{id}")
 
     public ResponseEntity<?> getCartByUserId(@PathVariable Long id){
 

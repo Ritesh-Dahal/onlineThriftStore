@@ -1,6 +1,7 @@
 package com.example.online.thrift.store.entity;
 
 import com.example.online.thrift.store.dto.request.OrderItemRequest;
+import com.example.online.thrift.store.enums.Status;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,11 +20,7 @@ public class OrderItem {
     private Long productId;
     private Long quantity;
     private Double price;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
-    public OrderItem(OrderItemRequest orderItemRequest) {
-        this.price = orderItemRequest.getPrice();
-        this.quantity = orderItemRequest.getQuantity();
-        this.productId = orderItemRequest.getProductId();
-        this.orderId = orderItemRequest.getOrderId();
-    }
 }

@@ -14,6 +14,6 @@ public class PaymentRequest {
     private LocalDateTime paymentDate;
     private Double amount;
     private String paymentMethod;
-    private String Status;
+    private String status;
     private Long orderId;
 }

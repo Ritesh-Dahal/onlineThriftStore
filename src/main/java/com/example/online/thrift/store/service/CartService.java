@@ -5,22 +5,39 @@ import com.example.online.thrift.store.dto.response.CartResponse;
 import com.example.online.thrift.store.entity.Cart;
 import com.example.online.thrift.store.exception.NotFoundException;
 import com.example.online.thrift.store.repository.CartRepository;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CartService {
 
-    private CartRepository cartRepository;
+    private final CartRepository cartRepository;
+    private  final ObjectMapper objectMapper;
 
-    public void createCart(CartRequest cartRequest){
+    public Map<String,Object> createCart(CartRequest cartRequest){
 
-        cartRepository.findByUserId(cartRequest.getUserId());
-        Cart cart = new Cart(cartRequest);
-        cartRepository.save(cart);
+       Optional<Cart> cart = cartRepository.findByUserId(cartRequest.getUserId());
+       if(cart.isPresent()){
+           return objectMapper.convertValue(cart, new TypeReference<Map<String, Object>>() {
+           });
 
+       } else {
+           Cart newCart = new Cart(cartRequest);
+           cartRepository.save(newCart);
+           Cart cart1 = cartRepository.findByUserId(cartRequest.getUserId()).get();
+           return objectMapper.convertValue(cart1, new TypeReference<Map<String, Object>>() {
+           });
+
+       }
     }
 
     public CartResponse getCartByUserId(Long id){

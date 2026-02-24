@@ -1,5 +1,6 @@
 package com.example.online.thrift.store.entity;
 
+import com.example.online.thrift.store.dto.request.PaymentRequest;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,8 +23,17 @@ public class Payment {
     private LocalDateTime paymentDate;
     private Double amount;
     private String paymentMethod;
-    private String Status;
+    private String status;
 
     private Long orderId;
+
+    public Payment (PaymentRequest paymentRequest){
+        this.paymentDate = paymentRequest.getPaymentDate();
+        this.amount = paymentRequest.getAmount();
+        this.paymentMethod = paymentRequest.getPaymentMethod();
+        this.status = paymentRequest.getStatus();
+        this.orderId = paymentRequest.getOrderId();
+
+    }
 
 }
